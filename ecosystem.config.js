@@ -1,5 +1,6 @@
+require('dotenv').config()
 const path = require('path')
-require('envkey')
+// require('envkey')
 
 const debugEnv = {
   DEBUG: 'ilp*,switch*,connector*',
