@@ -1,27 +1,27 @@
 const BigNumber = require('bignumber.js')
 const { getGasPrice } = require('../shared/gas-price')
 
-const gweiDai = {
-  symbol: 'DAI',
+const gweiEthb = {
+  symbol: 'ETHB',
   exchangeScale: 18,
   accountScale: 9,
   scale: 9
 }
 
 module.exports = convertUsdTo => {
-  const outgoingChannelAmount = convertUsdTo(20, gweiDai)
-  const maxPacketAmount = convertUsdTo(0.2, gweiDai)
+  const outgoingChannelAmount = convertUsdTo(20, gweiEthb)
+  const maxPacketAmount = convertUsdTo(0.2, gweiEthb)
 
   return {
     relation: 'child',
     plugin: 'ilp-plugin-ethereum',
-    assetCode: 'DAI',
+    assetCode: 'ETHB',
     assetScale: 9,
     options: {
       role: 'server',
-      port: 7444,
-      ethereumPrivateKey: process.env.DAI_PRIVATE_KEY,
-      ethereumProvider: process.env.DAI_ETHEREUM_PROVIDER,
+      port: 7446,
+      ethereumPrivateKey: process.env.ETHB_PRIVATE_KEY,
+      ethereumProvider: process.env.ETHB_ETHEREUM_PROVIDER,
       getGasPrice: process.env.CONNECTOR_ENV === 'production' && getGasPrice,
       outgoingChannelAmount,
       /**
@@ -32,7 +32,7 @@ module.exports = convertUsdTo => {
       minIncomingChannelAmount: new BigNumber(0),
       // In plugin (and not connector middleware) so F08s occur *before* T04s
       maxPacketAmount,
-      tokenAddress: process.env.DAI_TOKEN_ADDRESS
+      tokenAddress: process.env.ETHB_TOKEN_ADDRESS
     }
   }
 }

@@ -72,7 +72,7 @@ async function run() {
         ).amount
 
       const accountConfig = createConfig(convertUsdTo)
-
+      
       await addPlugin(accountId, accountConfig)
     }
   }
